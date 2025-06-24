@@ -1,0 +1,11 @@
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+}

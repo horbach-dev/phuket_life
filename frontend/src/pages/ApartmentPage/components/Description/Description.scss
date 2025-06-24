@@ -1,0 +1,44 @@
+.apartment-page-description {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+    &__content {
+        position: relative;
+
+        &--collapsed {
+            max-height: 300px;
+            overflow: hidden;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 50px;
+                background: linear-gradient(to bottom, transparent, var(--tg-theme-secondary-bg-color));
+            }
+        }
+    }
+
+    &__expand-button {
+        width: 100%;
+    }
+
+
+    ul {
+        margin: 0.5rem 0;
+        padding-left: 1rem;
+    }
+
+    li {
+        list-style: disc;
+        margin-bottom: 0.35rem;
+    }
+
+    a {
+        font-weight: 500;
+        color: var(--tg-theme-button-color);
+    }
+}

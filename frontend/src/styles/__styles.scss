@@ -1,0 +1,151 @@
+/* Reset styles */
+:root {
+  --tgui--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--tgui--font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  padding-bottom: 0 !important;
+}
+
+body {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--tg-theme-secondary-bg-color, white);
+  padding-bottom: 0 !important;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: 0.2rem 0;
+  background: rgba(179, 179, 179, 0.25);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-style: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button,
+input {
+  overflow: visible;
+  border: none;
+  outline: none;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.container {
+  padding: 0 1rem;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+}

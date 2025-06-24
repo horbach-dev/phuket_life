@@ -1,0 +1,111 @@
+.apartment-card {
+    width: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(33, 33, 33, 0.1);
+
+    &__info {
+        padding: 1rem;
+    }
+
+    &__title {
+        display: block;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    &__location {
+        font-size: 0.8rem;
+    }
+
+    &__bedrooms {
+        font-size: 0.8rem;
+    }
+
+    &__icon {
+        margin-right: 0.5rem;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.8rem;
+
+        &__price {
+            font-size: 0.9rem;
+            font-weight: 700;
+
+            &_double {
+                font-size: 0.85rem;
+
+                span {
+                    font-weight: 700;
+                    display: block;
+                }
+            }
+        }
+
+        &__btn {
+            padding-left: 2.5rem !important;
+            padding-right: 2.5rem !important;
+        }
+    }
+
+    &_skeleton {
+
+        span {
+            opacity: 0;
+        }
+
+        .apartment-slider__skeleton-shadow {
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(133, 133, 133, 0.1), transparent);
+            animation: skeleton-shodow 1.2s infinite;
+        }
+
+        .apartment-slider {
+            position: relative;
+            border-radius: 1rem;
+            background-color: rgba(133, 133, 133, 0.165);
+        }
+
+        .apartment-card__title {
+            height: 1.75rem;
+        }
+
+        .apartment-card__location {
+            height: 1.25rem;
+        }
+
+        .apartment-card__footer__price {
+            height: 1.45rem;
+        }
+
+        .apartment-card__title,
+        .apartment-card__location,
+        .apartment-card__footer__price {
+            overflow: hidden;
+            position: relative;
+            border-radius: 0.3rem;
+            background-color: rgba(133, 133, 133, 0.165);
+        }
+    }
+}
+
+@keyframes skeleton-shodow {
+    0% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}

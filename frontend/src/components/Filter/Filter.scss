@@ -1,0 +1,114 @@
+.filter-modal {
+    max-height: 95vh !important;
+}
+
+.filter {
+    max-width: 750px;
+    margin: auto;
+    padding: 2rem 1rem 1rem;
+
+    &__subtitle {
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding-bottom: 1rem;
+    }
+
+    &__select {
+        margin-bottom: 2.5rem;
+    }
+
+    &__select-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        &_type {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &_bedrooms {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &_bathrooms {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &_tags {
+            display: flex;
+            flex-wrap: wrap;
+
+            .filter__select-list-item {
+                padding: 0.2rem 1rem;
+            }
+        }
+    }
+
+    &__select-list-item {
+        text-align: center;
+        border-radius: 2rem;
+        padding: 0.2rem;
+        color: #333;
+        background: transparent;
+        border: 2px solid #3333331f;
+        opacity: 1 !important;
+
+        &_active {
+            border-color: #1a91ff !important;
+        }
+
+        &_loading {
+            color: transparent !important;
+            background: #b1b1b11f;
+        }
+    }
+
+    &__prices-input {
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.25) !important;
+
+        &_light {
+            box-shadow: 0 0 0 2px #3333331f !important;
+        }
+    }
+
+    &__prices {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+
+        @media (max-width: 520px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        & > div {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-bottom: 0 !important;
+        }
+    }
+}
+
+.filter-seacrch {
+    position: sticky;
+    bottom: 0;
+    padding: 0.5rem;
+    background: var(--tg-theme-secondary-bg-color, white);
+
+    button {
+        width: 100%;
+    }
+}
+
+.filter-top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--tg-theme-secondary-bg-color, white);
+}
