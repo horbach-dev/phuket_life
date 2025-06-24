@@ -9,6 +9,7 @@ import {
 import { BOT_USERNAME } from '@/constants';
 import { Section, Button, Snackbar } from '@telegram-apps/telegram-ui';
 import {useGetParameters} from "@/services/useGetParameters.ts";
+import {amountFormat} from "@/helpers/amountFormat.ts";
 
 declare global {
     interface Window {
@@ -20,7 +21,15 @@ declare global {
     }
 }
 
-const Sharing = ({ apartmentId }: { apartmentId: string }) => {
+interface IProps {
+    apartmentId: string
+    title: string
+    price: number | null
+    priceFrom: number | null
+    location: string | null
+}
+
+const Sharing = ({ apartmentId, title, price, priceFrom, location }: IProps) => {
     const { data: linkData } = useGetParameters()
     const [showSnackbar, setShowSnackbar] = useState(false);
 
@@ -38,7 +47,8 @@ const Sharing = ({ apartmentId }: { apartmentId: string }) => {
     const handleShare = async () => {
         try {
             const link = `https://t.me/${BOT_USERNAME}/app?startapp=${apartmentId}`;
-            shareURL(link, '');
+            shareURL(link, `🏠 ${title} \n💵 ${price ? amountFormat(price) : (priceFrom ? `от ${amountFormat(priceFrom)}` : 'цена по запросу')} \n${location ? `📍${location} \n` : ''}`
+            );
             hapticFeedback.notificationOccurred('success');
         } catch (error) {
             hapticFeedback.notificationOccurred('error');

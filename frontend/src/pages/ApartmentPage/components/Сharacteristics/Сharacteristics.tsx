@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { IApartment } from "@/types/apartment";
 
 const getTypeText = (type: string) => {
     switch (type) {
@@ -15,7 +16,11 @@ const getTypeText = (type: string) => {
     }
 }
 
-const Characteristics = ({ apartment }: any) => {
+interface IProps {
+    apartment: IApartment;
+}
+
+const Characteristics = ({ apartment }: IProps) => {
     const characteristics = [
         {
             title: 'Тип',
@@ -33,9 +38,9 @@ const Characteristics = ({ apartment }: any) => {
             title: 'Период аренды',
             value: 'от месяца',
         },
-        apartment.quarter && apartment.year_of_delivery ? {
+        apartment.quarter && apartment.yearOfDelivery ? {
             title: 'Сдача объекта',
-            value: `${apartment.quarter} квартал, ${apartment.year_of_delivery} г.`
+            value: `${apartment.quarter} квартал, ${apartment.yearOfDelivery} г.`
         } : {},
         apartment.livingArea ? {
             title: 'Жилая площадь',

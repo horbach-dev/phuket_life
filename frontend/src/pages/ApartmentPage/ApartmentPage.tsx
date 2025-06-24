@@ -97,7 +97,13 @@ function ApartmentPage() {
 
             <Characteristics apartment={data} />
 
-            <Sharing apartmentId={data.id} />
+            <Sharing
+              title={data.title}
+              price={data.price}
+              priceFrom={data.priceFrom}
+              apartmentId={data.id}
+              location={data.location}
+            />
 
             {data.description && (
                 <Description description={data.description} />

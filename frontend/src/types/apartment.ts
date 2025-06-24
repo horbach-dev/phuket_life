@@ -12,8 +12,11 @@ export interface IApartment {
   location: string | null;
   bedrooms: number | null;
   bathrooms: number | null;
+  quarter: string | null;
+  yearOfDelivery: string | null;
   type: TApartmentType;
   area: number | null;
+  furniture: boolean | null;
   livingArea: number | null;
   photos: string[] | [];
   tags: any[]

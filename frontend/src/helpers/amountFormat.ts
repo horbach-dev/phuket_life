@@ -1,4 +1,6 @@
-export const amountFormat = (value: number) => {
+export const amountFormat = (value: number | null) => {
+  if (!value) return null
+
   const result = new Intl.NumberFormat('th-TH', {
     style: 'decimal',
     currency: 'THB',
