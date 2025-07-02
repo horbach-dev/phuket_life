@@ -1,20 +1,6 @@
 import { Fragment } from 'react';
 import { IApartment } from "@/types/apartment";
-
-const getTypeText = (type: string) => {
-    switch (type) {
-        case 'home':
-            return 'Дом';
-        case 'apartment':
-            return 'Апартаменты';
-        case 'villa':
-            return 'Вилла';
-        case 'townhouse':
-            return 'Таунхаус';
-        default:
-            return 'не указано';
-    }
-}
+import { getBedroomsText, getTypeText } from "./heplers";
 
 interface IProps {
     apartment: IApartment;
@@ -28,7 +14,7 @@ const Characteristics = ({ apartment }: IProps) => {
         },
         {
             title: 'Спален',
-            value: apartment.bedrooms,
+            value: getBedroomsText(apartment.bedrooms),
         },
         {
             title: 'Сан. узлов',
@@ -38,9 +24,10 @@ const Characteristics = ({ apartment }: IProps) => {
             title: 'Период аренды',
             value: 'от месяца',
         },
-        apartment.quarter && apartment.yearOfDelivery ? {
-            title: 'Сдача объекта',
-            value: `${apartment.quarter} квартал, ${apartment.yearOfDelivery} г.`
+        apartment.area ? {
+            title: 'Площадь',
+            value: apartment.area,
+            type: 'area',
         } : {},
         apartment.livingArea ? {
             title: 'Жилая площадь',
@@ -50,7 +37,11 @@ const Characteristics = ({ apartment }: IProps) => {
         apartment.category === 'resale' ? {
           title: 'Наличие мебели',
           value: apartment.furniture ? 'Есть' : 'Нет',
-      } : {}
+        } : {},
+        apartment.quarter && apartment.yearOfDelivery ? {
+            title: 'Сдача объекта',
+            value: `${apartment.quarter} квартал, ${apartment.yearOfDelivery} г.`
+        } : {},
     ]
 
     const list = characteristics.filter(i => !!i.title) as { title?: string, value?: string, type?: string }[]

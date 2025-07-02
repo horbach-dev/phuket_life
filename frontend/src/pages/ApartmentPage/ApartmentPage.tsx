@@ -60,14 +60,14 @@ function ApartmentPage() {
         </div>
         <div className='apartment-page__info'>
             <h1 className='apartment-page__title'>{data.title}</h1>
-            <p className='apartment-card__location'>
+          {data.location && <p className='apartment-card__location'>
                 <EnvironmentFilled className='apartment-card__icon' />
                 {data.location}
-            </p>
-            <p className='apartment-card__bedrooms'>
-                <HomeFilled className='apartment-card__icon' />
-                {data.bedrooms} {'спальни'}: {data.area} {'m'} <sup>2</sup>
-            </p>
+            </p>}
+            {/*<p className='apartment-card__bedrooms'>*/}
+            {/*    <HomeFilled className='apartment-card__icon' />*/}
+            {/*    {data.bedrooms} {'спальни'}: {data.area} {'m'} <sup>2</sup>*/}
+            {/*</p>*/}
 
 
           {data.price ? (

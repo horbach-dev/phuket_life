@@ -53,10 +53,10 @@ const ApartmentCard = ({
                     <EnvironmentFilled className='apartment-card__icon' />
                     {location ? location : 'Не указано'}
                 </p>
-                <p className='apartment-card__bedrooms'>
-                    <HomeFilled className='apartment-card__icon' />
-                    {bedrooms} {'спальни'}: {area} {'m'} <sup>2</sup>
-                </p>
+                {/*<p className='apartment-card__bedrooms'>*/}
+                {/*    <HomeFilled className='apartment-card__icon' />*/}
+                {/*    {bedrooms} {'спальни'}: {area} {'m'} <sup>2</sup>*/}
+                {/*</p>*/}
                 <div className='apartment-card__footer'>
                     {price ? (
                         <p className='apartment-card__footer__price'>{amountFormat(price)}</p>

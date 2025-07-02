@@ -1,17 +1,8 @@
 import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import { getMinPriceByCategory } from "@/api/apartments/getMinPriceByCategory";
-import { toCategoryPriceModel } from "@/api/apartments/dto.ts";
-
-const categories = [
-  { category: 'resale', title: 'Resale', type: 'price' },
-  { category: 'resale', title: 'Resale', type: 'priceFrom' },
-  { category: 'villas', title: 'Виллы', type: 'price' },
-  { category: 'villas', title: 'Виллы', type: 'priceFrom' },
-  { category: 'rent', title: 'Аренда', type: 'price' },
-  { category: 'rent', title: 'Аренда', type: 'priceFrom' },
-  { category: 'apartments', title: 'Апартаменты', type: 'price' },
-  { category: 'apartments', title: 'Апартаменты', type: 'priceFrom' },
-] as const;
+import { toCategoryPriceModel } from "@/api/apartments/dto";
+import { TApartmentCategory } from "@/types/apartment";
+import { categories } from "@/constants";
 
 type CategoryQueryResult = ReturnType<typeof toCategoryPriceModel>;
 type TItem = {
@@ -19,11 +10,23 @@ type TItem = {
   category: string;
   value: number;
 };
+type TPreparedData = {
+  category: TApartmentCategory
+  title: string,
+  type: 'price' | 'priceFrom'
+}
+
+const preparedData = categories.map(({ category, title}) => {
+  return [
+    { category, title, type: 'price' },
+    { category, title, type: 'priceFrom' },
+  ]
+}).flat() as TPreparedData[]
 
 export const useMinPricesByCategories = () => {
   const queries = useQueries({
-    queries: categories.map(({ category, type, title }) => ({
-      queryKey: ['minPrice', { category, type }],
+    queries: preparedData.map(({ category, type, title }) => ({
+      queryKey: ['minPrice', category, type],
       queryFn: () => getMinPriceByCategory(category, type),
       select: (data: any) => toCategoryPriceModel(data.data[0], category, title),
     })),

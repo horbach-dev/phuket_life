@@ -1,19 +1,19 @@
 import {forwardRef, ReactNode, useEffect, useRef} from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 import { TApartmentCategory } from "@/types/apartment";
 import { useMinPricesByCategories } from "@/services/apartments/useMinPricesByCategories";
 import SectionHeader from "@/components/SectionHeader";
 import { amountFormat } from "@/helpers/amountFormat";
+import { categories } from "@/constants";
 
 import './CategoriesSection.scss';
-import {hapticFeedback} from "@telegram-apps/sdk-react";
 
-const categories = [
-  { category: 'resale', title: 'Resale', value: 0 },
-  { category: 'villas', title: 'Виллы', value: 0 },
-  { category: 'rent', title: 'Аренда', value: 0 },
-  { category: 'apartments', title: 'Апартаменты', value: 0 },
-] as const;
+const loadingData = categories.map(({ title, category }) => ({
+  title,
+  category,
+  value: 0
+}))
 
 interface IProps {
   button?: ReactNode
@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const CategoriesSection = forwardRef<HTMLDivElement, IProps>(({ button, onChangeCategory, activeCategory }, ref) => {
-  const itemRefs = useRef<{ [key: string]: any | null }>({});
+  const itemRefs = useRef<{ [key: string]: any }>({});
   const { data, isError, isLoading } = useMinPricesByCategories();
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const CategoriesSection = forwardRef<HTMLDivElement, IProps>(({ button, onChange
   }
 
   const loading = isError || isLoading
-  const currentList = loading ? categories : data
+  const currentList = loading ? loadingData : data
 
   return (
     <section ref={ref} className='categories-section'>
@@ -63,10 +63,12 @@ const CategoriesSection = forwardRef<HTMLDivElement, IProps>(({ button, onChange
         {currentList.map(item => (
           <div
             key={item.title}
-            ref={(el) => itemRefs.current[item.category] = el}
+            ref={(el) => {
+              itemRefs.current[item.category] = el
+            }}
             onClick={() => handleClick(item.category as TApartmentCategory)}
             className={
-              classnames(
+              classNames(
                 'categories-section__item',
                 item.category === activeCategory && 'categories-section__item_active',
               )

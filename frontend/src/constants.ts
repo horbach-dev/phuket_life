@@ -11,8 +11,7 @@ export const defaultFilterValues = {
 }
 
 export const categories = [
-  { title: 'Resale', category: 'resale' },
-  { title: 'Виллы', category: 'villas' },
-  { title: 'Аренда', category: 'rent' },
-  { title: 'Апартаменты', category: 'apartments' },
+  { title: 'Готовые объекты', category: 'resale' },
+  { title: 'Виллы в стройке', category: 'villas' },
+  { title: 'Апартаменты в стройке', category: 'apartments' },
 ]
