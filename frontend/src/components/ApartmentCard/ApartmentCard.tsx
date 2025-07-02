@@ -1,4 +1,4 @@
-import { HomeFilled, EnvironmentFilled } from '@ant-design/icons'
+import { EnvironmentFilled } from '@ant-design/icons'
 import {Link, useNavigate} from 'react-router-dom';
 import { Button } from '@telegram-apps/telegram-ui';
 import ApartmentsSlider from '@/components/ApartmentSlider';
@@ -19,9 +19,7 @@ const ApartmentCard = ({
     price,
     priceFrom,
     priceTo,
-    bedrooms,
     managerLink,
-    area,
     id
 }: IProps) => {
     const navigate = useNavigate();

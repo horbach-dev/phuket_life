@@ -41,7 +41,7 @@ const HotOffers = () => {
         {!isLoading ? (
           data?.apartments?.map(apartment => (
             <ApartmentCard
-              key={apartment.title}
+              key={apartment.id}
               {...apartment}
               managerLink={linkData?.manager_link}
             />

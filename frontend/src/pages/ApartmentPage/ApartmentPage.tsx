@@ -2,7 +2,6 @@ import {Link, useParams} from 'react-router-dom';
 import {
   ArrowRightOutlined,
   EnvironmentFilled,
-  HomeFilled,
 } from '@ant-design/icons';
 import Empty from '@/components/Empty';
 import { Page } from '@/components/Page.tsx';
