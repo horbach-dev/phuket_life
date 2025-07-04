@@ -16,6 +16,7 @@ export interface IApartment {
   yearOfDelivery: string | null;
   type: TApartmentType;
   area: number | null;
+  monthlyRent: boolean | null;
   furniture: boolean | null;
   livingArea: number | null;
   photos: string[] | [];

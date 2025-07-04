@@ -37,7 +37,6 @@ const Sharing = ({ apartmentId, title, price, priceFrom, location }: IProps) => 
         try {
             const link = `https://t.me/${BOT_USERNAME}/app?startapp=${apartmentId}`;
             await navigator.clipboard.writeText(link);
-            hapticFeedback.notificationOccurred('success');
             setShowSnackbar(true);
         } catch (error) {
             hapticFeedback.notificationOccurred('error');
@@ -49,7 +48,6 @@ const Sharing = ({ apartmentId, title, price, priceFrom, location }: IProps) => 
             const link = `https://t.me/${BOT_USERNAME}/app?startapp=${apartmentId}`;
             shareURL(link, `🏠 ${title} \n💵 ${price ? amountFormat(price) : (priceFrom ? `от ${amountFormat(priceFrom)}` : 'цена по запросу')} \n${location ? `📍${location} \n` : ''}`
             );
-            hapticFeedback.notificationOccurred('success');
         } catch (error) {
             hapticFeedback.notificationOccurred('error');
         }

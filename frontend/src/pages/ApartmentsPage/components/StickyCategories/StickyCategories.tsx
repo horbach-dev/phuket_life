@@ -1,8 +1,9 @@
-import {FC, useRef, ReactNode, useEffect} from 'react';
+import {FC, ReactNode } from 'react';
 import { Button } from '@telegram-apps/telegram-ui';
 import {hapticFeedback} from "@telegram-apps/sdk-react";
 import { categories } from '@/constants'
 import { TApartmentCategory } from "@/types/apartment";
+import useScrollToActiveElement from "@/hooks/useScrollToActiveElement";
 
 import './StickyCategories.scss';
 
@@ -19,22 +20,7 @@ const StickyCategories: FC<IProps> = ({
   activeCategory,
   onChangeCategory,
 }) => {
-  const itemRefs = useRef<{ [key: string]: any | null }>({});
-
-  useEffect(() => {
-    if (activeCategory) {
-      const activeEl = itemRefs.current?.[activeCategory];
-
-      if (activeEl) {
-        activeEl.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest',
-        });
-      }
-    }
-
-  }, [activeCategory])
+  const itemRefs = useScrollToActiveElement({ active: activeCategory })
 
   const handleClick = (category: TApartmentCategory) => {
     hapticFeedback.impactOccurred('light')

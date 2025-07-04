@@ -20,10 +20,10 @@ const Characteristics = ({ apartment }: IProps) => {
             title: 'Сан. узлов',
             value: apartment.bathrooms,
         },
-        apartment.category === 'resale' ? {} : {
+        apartment.monthlyRent ? {
             title: 'Период аренды',
             value: 'от месяца',
-        },
+        } : {},
         apartment.area ? {
             title: 'Площадь',
             value: apartment.area,

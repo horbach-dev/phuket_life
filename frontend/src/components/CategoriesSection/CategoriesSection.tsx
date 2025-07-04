@@ -1,8 +1,9 @@
-import {forwardRef, ReactNode, useEffect, useRef} from 'react';
+import { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
-import { hapticFeedback } from "@telegram-apps/sdk-react";
+import {hapticFeedback, isMiniAppDark, useSignal} from "@telegram-apps/sdk-react";
 import { TApartmentCategory } from "@/types/apartment";
 import { useMinPricesByCategories } from "@/services/apartments/useMinPricesByCategories";
+import useScrollToActiveElement from "@/hooks/useScrollToActiveElement";
 import SectionHeader from "@/components/SectionHeader";
 import { amountFormat } from "@/helpers/amountFormat";
 import { categories } from "@/constants";
@@ -22,23 +23,9 @@ interface IProps {
 }
 
 const CategoriesSection = forwardRef<HTMLDivElement, IProps>(({ button, onChangeCategory, activeCategory }, ref) => {
-  const itemRefs = useRef<{ [key: string]: any }>({});
+  const isDark = useSignal(isMiniAppDark);
   const { data, isError, isLoading } = useMinPricesByCategories();
-
-  useEffect(() => {
-    if (activeCategory) {
-      const activeEl = itemRefs.current?.[activeCategory];
-
-      if (activeEl) {
-        activeEl.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'end',
-        });
-      }
-    }
-
-  }, [activeCategory])
+  const itemRefs = useScrollToActiveElement({ active: activeCategory })
 
   const handleClick = (category: TApartmentCategory) => {
     hapticFeedback.impactOccurred('light')
@@ -70,6 +57,7 @@ const CategoriesSection = forwardRef<HTMLDivElement, IProps>(({ button, onChange
             className={
               classNames(
                 'categories-section__item',
+                isDark ? 'categories-section__item_dark' : 'categories-section__item_light',
                 item.category === activeCategory && 'categories-section__item_active',
               )
             }

@@ -25,6 +25,7 @@ export type TApartmentResponse = {
   photos: TApartmentPhoto[]
   about: null | string
   area: null | number
+  monthly_rent: boolean | null
   living_area: null | number
   bathrooms: null | number
   bedrooms: null | number
