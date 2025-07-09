@@ -1,4 +1,4 @@
-import { useEffect, memo } from "react";
+import {useEffect, memo, useRef} from "react";
 import ApartmentCard, { ApartmentCardSkeleton } from "@/components/ApartmentCard";
 import { useGetParameters } from "@/services/useGetParameters";
 import { useIntersectionObserver } from "@/hooks/useInterserctionObserver";
@@ -24,20 +24,25 @@ const ApartmentsList = ({ filter, isFilterClear, clearFilter }: IProps) => {
     isFetchingNextPage,
   } = useApartmentsQuery({ filter })
 
-  const { ref, isIntersecting } = useIntersectionObserver({ rootMargin: '150px' })
+  const lockLoadingRef = useRef(false);
+  const { ref, isIntersecting } = useIntersectionObserver({
+    rootMargin: '100px',
+    triggerOnce: false,
+  })
 
   useEffect(() => {
-    if (hasNextPage && isIntersecting && !isFetchingNextPage) {
-      fetchNextPage()
+    const loadMore = async () => {
+      if (lockLoadingRef.current || isFetchingNextPage || !hasNextPage) return;
+      lockLoadingRef.current = true;
+
+      await fetchNextPage();
+      lockLoadingRef.current = false;
+    };
+
+    if (isIntersecting) {
+      loadMore();
     }
-
-  }, [
-    isIntersecting,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage
-  ])
-
+  }, [isIntersecting, fetchNextPage, isFetchingNextPage, hasNextPage]);
 
   if (
     !data?.apartments.length &&
@@ -80,7 +85,13 @@ const ApartmentsList = ({ filter, isFilterClear, clearFilter }: IProps) => {
       {isFetchingNextPage && (
         <ApartmentCardSkeleton />
       )}
-      {hasNextPage && <div ref={ref} style={{ height: 1 }} />}
+      {hasNextPage && (
+        <div
+          ref={ref}
+          key={data?.apartments.length}
+          style={{height: 1}}
+        />
+      )}
     </div>
   )
 }

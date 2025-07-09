@@ -17,6 +17,7 @@ export const mapApartmentDTOToModel = (item: TApartmentResponse): IApartment  =>
     type: item.type as any,
     area: item.area,
     livingArea: item.living_area,
+    plotArea: item.plot_area,
     monthlyRent: item.monthly_rent,
     tags: item?.tags?.length ? item.tags.map(i => i?.tags_id?.title) : [],
     about: item.about,

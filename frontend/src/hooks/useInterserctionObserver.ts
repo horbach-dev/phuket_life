@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-type IntersectionOptions = IntersectionObserverInit;
+type IntersectionOptions = {
+  rootMargin?: string
+  threshold?: number
+  triggerOnce?: boolean
+};
 
 export function useIntersectionObserver(
   options: IntersectionOptions = {

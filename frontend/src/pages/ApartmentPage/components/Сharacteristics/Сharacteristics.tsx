@@ -1,10 +1,12 @@
 import { Fragment } from 'react';
 import { IApartment } from "@/types/apartment";
-import { getBedroomsText, getTypeText } from "./heplers";
+import { getRoomsText, getTypeText } from "./heplers";
 
 interface IProps {
     apartment: IApartment;
 }
+
+type TListItem = any
 
 const Characteristics = ({ apartment }: IProps) => {
     const characteristics = [
@@ -14,23 +16,28 @@ const Characteristics = ({ apartment }: IProps) => {
         },
         {
             title: 'Спален',
-            value: getBedroomsText(apartment.bedrooms),
+            value: getRoomsText(apartment.bedrooms),
         },
         {
             title: 'Сан. узлов',
-            value: apartment.bathrooms,
+            value: getRoomsText(apartment.bedrooms),
         },
         apartment.monthlyRent ? {
             title: 'Период аренды',
             value: 'от месяца',
         } : {},
         apartment.area ? {
-            title: 'Площадь',
+            title: 'Размер общей площади',
             value: apartment.area,
             type: 'area',
         } : {},
+        apartment.plotArea ? {
+            title: 'Размер площади участка',
+            value: apartment.plotArea,
+            type: 'area',
+        } : {},
         apartment.livingArea ? {
-            title: 'Жилая площадь',
+            title: 'Размер жилой площади',
             value: apartment.livingArea,
             type: 'area',
         } : {},
@@ -44,7 +51,7 @@ const Characteristics = ({ apartment }: IProps) => {
         } : {},
     ]
 
-    const list = characteristics.filter(i => !!i.title) as { title?: string, value?: string, type?: string }[]
+    const list: TListItem[] = characteristics.filter(i => !!i.title)
 
     return (
         <>

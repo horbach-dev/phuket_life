@@ -1,4 +1,4 @@
-import {Link, useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   ArrowRightOutlined,
   EnvironmentFilled,
@@ -6,13 +6,13 @@ import {
 import Empty from '@/components/Empty';
 import { Page } from '@/components/Page.tsx';
 import Spinner from '@/components/Spinner';
-import {Button, Chip} from '@telegram-apps/telegram-ui';
+import { Button, Chip } from '@telegram-apps/telegram-ui';
 import ApartmentSlider from '@/components/ApartmentSlider';
 import Description from './components/Description';
 import Sharing from './components/Sharing';
 import Characteristics from './components/Сharacteristics';
-import {useApartmentQuery} from "@/services/apartments/useApartmentQuery";
-import {amountFormat} from "@/helpers/amountFormat";
+import { useApartmentQuery } from "@/services/apartments/useApartmentQuery";
+import { amountFormat } from "@/helpers/amountFormat";
 
 import './ApartmentPage.scss';
 
@@ -53,6 +53,7 @@ function ApartmentPage() {
         <div className='apartment-page'>
             <ApartmentSlider
                 radius={false}
+                id={data.id}
                 images={data.photos}
                 title={data.title}
             />
@@ -63,11 +64,6 @@ function ApartmentPage() {
                 <EnvironmentFilled className='apartment-card__icon' />
                 {data.location}
             </p>}
-            {/*<p className='apartment-card__bedrooms'>*/}
-            {/*    <HomeFilled className='apartment-card__icon' />*/}
-            {/*    {data.bedrooms} {'спальни'}: {data.area} {'m'} <sup>2</sup>*/}
-            {/*</p>*/}
-
 
           {data.price ? (
             <p className='apartment-page__price'>{amountFormat(data.price)}</p>

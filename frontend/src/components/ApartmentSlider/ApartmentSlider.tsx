@@ -1,8 +1,7 @@
-import { useId, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import classnames from 'classnames';
-import Spinner from '@/components/Spinner'
+import Slide from './components/Slide'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,47 +9,48 @@ import 'swiper/css/pagination';
 import './ApartmentSlider.scss';
 
 interface IProps {
-    images: string[];
-    title: string;
-    radius?: boolean;
-    onClick?: () => void
+  images: string[];
+  title: string;
+  radius?: boolean;
+  onClick?: () => void
+  id: string
 }
 
-const ApartmentSlider = ({ images, title, radius = true, onClick }: IProps) => {
-    const cardId = useId().replace(/:/g, '-');
-
+const ApartmentSlider = ({ id, images, title, radius = true, onClick }: IProps) => {
   return (
     <div className={classnames('apartment-slider', radius && 'apartment-slider_radius')}>
         {images.length ? (
                 <>
-                <Swiper
-                    modules={[Navigation]}
+                  <Swiper
+                    modules={[Navigation, Pagination]}
                     navigation={{
-                        prevEl: `.apartment-slider__button_prev_${cardId}`,
-                        nextEl: `.apartment-slider__button_next_${cardId}`,
+                      prevEl: `.apartment-slider__button_prev_${id}`,
+                      nextEl: `.apartment-slider__button_next_${id}`,
                     }}
                     loop={true}
+                    pagination={{ clickable: true }}
                     spaceBetween={0}
                     slidesPerView={1}
-                >
+                  >
                     {images.map((image, index) => (
-                        <SwiperSlide
-                            key={image}
-                            onClick={onClick}
-                            className='apartment-slider__item'
-                        >
+                      <SwiperSlide
+                        key={image}
+                        onClick={onClick}
+                        className='apartment-slider__item'
+                      >
                         <Slide
-                            title={title}
-                            image={image}
-                            index={index}
+                          title={title}
+                          image={image}
+                          index={index}
                         />
-                        </SwiperSlide>
+                      </SwiperSlide>
                     ))}
-                </Swiper>
-                {images.length > 1 && (
+                    <div className='apartment-slider__skeleton-shadow'/>
+                  </Swiper>
+                  {images.length > 1 && (
                     <>
-                        <button className={`apartment-slider__button apartment-slider__button_prev apartment-slider__button_prev_${cardId}`} />
-                        <button className={`apartment-slider__button apartment-slider__button_next apartment-slider__button_next_${cardId}`} />
+                        <button className={`apartment-slider__button apartment-slider__button_prev apartment-slider__button_prev_${id}`} />
+                        <button className={`apartment-slider__button apartment-slider__button_next apartment-slider__button_next_${id}`} />
                     </>
                 )}
                 </>
@@ -60,21 +60,5 @@ const ApartmentSlider = ({ images, title, radius = true, onClick }: IProps) => {
     </div>
   );
 };
-
-const Slide = ({ title, image, index }: any) => {
-    const [isLoading, setIsLoading] = useState(true)
-
-    return (
-        <>
-        <Spinner className={!isLoading ? 'hide' : ''} />
-        <img
-                src={image}
-                className={classnames('apartment-slider__image', !isLoading && 'apartment-slider__image_show')}
-                alt={`${title} - фото ${index + 1}`}
-                onLoad={() => setIsLoading(false)}
-            />
-        </>
-    )
-}
 
 export default ApartmentSlider;

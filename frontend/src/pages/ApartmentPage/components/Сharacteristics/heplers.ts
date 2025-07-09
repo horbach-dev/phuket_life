@@ -1,7 +1,7 @@
-export const getBedroomsText = (bedrooms: number | null) => {
+export const getRoomsText = (bedrooms: number | null, isOne?: boolean) => {
   switch (bedrooms) {
     case 1:
-      return 'от 1-й'
+      return isOne ? 'от 1-го' : 'от 1-й'
     case 2:
       return 'от 2-х'
     case 3:

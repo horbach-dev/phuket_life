@@ -1,7 +1,7 @@
 import { EnvironmentFilled } from '@ant-design/icons'
 import {Link, useNavigate} from 'react-router-dom';
 import { Button } from '@telegram-apps/telegram-ui';
-import ApartmentsSlider from '@/components/ApartmentSlider';
+import ApartmentSlider from '@/components/ApartmentSlider';
 import { hapticFeedback } from '@telegram-apps/sdk-react';
 import {amountFormat} from "@/helpers/amountFormat";
 import { IApartment } from "@/types/apartment";
@@ -30,7 +30,8 @@ const ApartmentCard = ({
 
     return (
         <div className='apartment-card'>
-            <ApartmentsSlider
+            <ApartmentSlider
+                id={id}
                 images={photos}
                 title={title}
                 onClick={() => {
@@ -51,10 +52,6 @@ const ApartmentCard = ({
                     <EnvironmentFilled className='apartment-card__icon' />
                     {location ? location : 'Не указано'}
                 </p>
-                {/*<p className='apartment-card__bedrooms'>*/}
-                {/*    <HomeFilled className='apartment-card__icon' />*/}
-                {/*    {bedrooms} {'спальни'}: {area} {'m'} <sup>2</sup>*/}
-                {/*</p>*/}
                 <div className='apartment-card__footer'>
                     {price ? (
                         <p className='apartment-card__footer__price'>{amountFormat(price)}</p>
