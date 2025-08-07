@@ -1,13 +1,16 @@
 import { useParams } from 'react-router-dom';
+import { useRef } from "react";
 import { Page } from '@/components/Page.tsx';
 import Spinner from '@/components/Spinner';
 import { useGetArticle } from "@/services/articles/useGetArticle";
+import { ArticlePageContent } from "./components/ArticlePageContent";
 
 import './ArticlePage.scss';
 
 const ArticlePage = () => {
     const { id } = useParams()
     const { data, isLoading } = useGetArticle(Number(id))
+    const pageRef = useRef<HTMLDataElement | null>(null)
 
     if (isLoading || !data) {
         return <Spinner global />
@@ -15,7 +18,10 @@ const ArticlePage = () => {
 
     return (
         <Page back={true}>
-            <div className="article-page">
+            <div
+              ref={pageRef}
+              className="article-page"
+            >
                 <img
                   src={data.poster}
                   alt={data.title}
@@ -28,9 +34,10 @@ const ArticlePage = () => {
                     <h1 className="article-page__title">
                         {data.title}
                     </h1>
-                    <div className='article-page__page' dangerouslySetInnerHTML={{
-                        __html: data.page
-                    }} />
+                    <ArticlePageContent
+                      pageRef={pageRef}
+                      page={data.page}
+                    />
                 </div>
             </div>
         </Page>

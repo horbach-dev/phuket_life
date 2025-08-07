@@ -18,7 +18,11 @@ const RedirectController = ({ launchParams }: RedirectControllerProps) => {
     const isFirstLaunch = sessionStorage.getItem('wasRedirected') !== 'true';
 
     if (redirectUrl && isFirstLaunch) {
+      navigate('/apartments');
       navigate(redirectUrl);
+      sessionStorage.setItem('wasRedirected', 'true');
+    } else if (!redirectUrl && isFirstLaunch) {
+      navigate('/apartments');
       sessionStorage.setItem('wasRedirected', 'true');
     }
 

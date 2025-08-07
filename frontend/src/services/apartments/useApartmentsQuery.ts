@@ -8,7 +8,7 @@ import {IApartment, TFilter} from "@/types/apartment.ts";
 const defaultParams = {
   limit: 10,
   offset: 1,
-  sort: ['sort'],
+  sort: ['effective_price'],
   fields: ['*', 'photos.directus_files_id.*'],
   meta: 'filter_count',
 }
