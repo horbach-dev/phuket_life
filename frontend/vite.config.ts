@@ -21,10 +21,10 @@ export default defineConfig(({ mode }) => {
         port: 5173,
       }),
       visualizer({
-        filename: 'stats.html',   // куда сохранить отчёт
-        open: true,               // сразу открыть в браузере
-        gzipSize: true,           // показывать сжатый размер
-        brotliSize: true          // показывать brotli размер
+        filename: 'stats.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true
       })
     ],
     publicDir: './public',

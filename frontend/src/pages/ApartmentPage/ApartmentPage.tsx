@@ -65,7 +65,7 @@ function ApartmentPage() {
                 {data.location}
             </p>}
 
-          {data.price ? (
+          {data.price && (!data.priceFrom && !data.priceTo) ? (
             <p className='apartment-page__price'>{amountFormat(data.price)}</p>
           ) : (
             <>

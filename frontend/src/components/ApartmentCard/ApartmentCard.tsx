@@ -53,7 +53,7 @@ const ApartmentCard = ({
                     {location ? location : 'Не указано'}
                 </p>
                 <div className='apartment-card__footer'>
-                    {price ? (
+                    {price && (!priceFrom && !priceTo) ? (
                         <p className='apartment-card__footer__price'>{amountFormat(price)}</p>
                     ) : (
                         <>
