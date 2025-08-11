@@ -10,7 +10,7 @@ import './ArticlePage.scss';
 const ArticlePage = () => {
     const { id } = useParams()
     const { data, isLoading } = useGetArticle(Number(id))
-    const pageRef = useRef<HTMLDataElement | null>(null)
+    const pageRef = useRef<HTMLDivElement | null>(null)
 
     if (isLoading || !data) {
         return <Spinner global />

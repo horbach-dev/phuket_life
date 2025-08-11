@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef } from "react";
 
 interface IProps {
-  pageRef: MutableRefObject<HTMLDataElement | null>
+  pageRef: MutableRefObject<HTMLDivElement | null>
   page: string
 }
 
@@ -11,6 +11,9 @@ export const ArticlePageContent = ({ page, pageRef }: IProps) => {
 
   useEffect(() => {
     const video = contentRef.current?.querySelector('video')
+
+    video?.setAttribute("playsinline", "");
+    video?.setAttribute("webkit-playsinline", "true");
 
     const tryPlay = () => {
       if (triggeredRef.current) return;
