@@ -20,7 +20,13 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 }
 
 export function Root() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5
+      }
+    }
+  });
 
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>

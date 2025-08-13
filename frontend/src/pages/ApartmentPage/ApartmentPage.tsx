@@ -104,14 +104,14 @@ function ApartmentPage() {
                 <Description description={data.description} />
             )}
 
-            {data.about && (
-                <>
-                    <p className='section-title'>{'О застройщике'}</p>
-                        <div className="apartment-page__developer">
-                        {data.about}
-                    </div>
-                </>
-            )}
+            {/*{data.about && (*/}
+            {/*    <>*/}
+            {/*        <p className='section-title'>{'О застройщике'}</p>*/}
+            {/*            <div className="apartment-page__developer">*/}
+            {/*            {data.about}*/}
+            {/*        </div>*/}
+            {/*    </>*/}
+            {/*)}*/}
 
             {data.tags.length ? (
                 <>

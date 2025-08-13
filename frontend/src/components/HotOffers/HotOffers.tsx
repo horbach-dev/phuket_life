@@ -1,6 +1,6 @@
 import { Button } from '@telegram-apps/telegram-ui';
 import { DownCircleOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 import { useGetParameters } from "@/services/useGetParameters";
 import { useApartmentsQuery } from "@/services/apartments/useApartmentsQuery";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -8,8 +8,11 @@ import ApartmentCard, { ApartmentCardSkeleton } from "@/components/ApartmentCard
 
 import './HotOffers.scss'
 
-const HotOffers = () => {
-  const navigate = useNavigate()
+interface IProps {
+  navigate: NavigateFunction;
+}
+
+const HotOffers = ({ navigate }: IProps) => {
   const {
     data,
     isLoading: isLoadingApartments,
@@ -38,7 +41,15 @@ const HotOffers = () => {
       />
 
       <div className="hot-offers__list">
-        {!isLoading ? (
+        {isLoading ? (
+          <>
+            <ApartmentCardSkeleton />
+            <ApartmentCardSkeleton />
+            <ApartmentCardSkeleton />
+            <ApartmentCardSkeleton />
+            <ApartmentCardSkeleton />
+          </>
+        ) : (
           data?.apartments?.map(apartment => (
             <ApartmentCard
               key={apartment.id}
@@ -46,12 +57,6 @@ const HotOffers = () => {
               managerLink={linkData?.manager_link}
             />
           ))
-        ) : (
-          <>
-            <ApartmentCardSkeleton />
-            <ApartmentCardSkeleton />
-            <ApartmentCardSkeleton />
-          </>
         )}
       </div>
     </div>

@@ -69,5 +69,11 @@
         h3 {
             font-size: 18px;
         }
+
+        img {
+            width: 100%;
+            aspect-ratio: 1.5;
+            object-fit: cover;
+        }
     }
 }

@@ -20,7 +20,7 @@ const Characteristics = ({ apartment }: IProps) => {
         },
         {
             title: 'Сан. узлов',
-            value: getRoomsText(apartment.bedrooms),
+            value: getRoomsText(apartment.bathrooms, true),
         },
         apartment.monthlyRent ? {
             title: 'Период аренды',

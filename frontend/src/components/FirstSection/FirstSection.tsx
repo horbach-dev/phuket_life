@@ -1,11 +1,13 @@
 import { Button } from '@telegram-apps/telegram-ui';
-import { useNavigate } from 'react-router-dom';
 
+import { NavigateFunction } from "react-router-dom";
 import './FirstSection.scss'
 
-const FirstSection = () => {
-  const navigate = useNavigate()
+interface IProps {
+  navigate: NavigateFunction;
+}
 
+const FirstSection = ({ navigate }: IProps) => {
   return (
     <section className='main-page__first-section'>
         <div className='main-page__first-section__content'>

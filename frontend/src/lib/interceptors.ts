@@ -1,23 +1,12 @@
 import {
   type AxiosError,
   type AxiosResponse,
-  type InternalAxiosRequestConfig,
 } from 'axios';
 
 export interface ConsoleError {
   status: number;
   data: unknown;
 }
-
-export const requestInterceptor = (
-  config: InternalAxiosRequestConfig
-): InternalAxiosRequestConfig => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.set('Authorization', `Bearer ${token}`);
-  }
-  return config;
-};
 
 export const successInterceptor = (response: AxiosResponse): AxiosResponse => {
   return response;

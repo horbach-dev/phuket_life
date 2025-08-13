@@ -3,7 +3,7 @@ import { getApartments } from "@/api/apartments/getApartments";
 import { mapApartmentDTOToModel } from "@/api/apartments/dto";
 import { buildFilter } from "@/api/apartments/utils";
 import { TApartmentsRequestParams, TApartmentsResponse } from "@/api/apartments/types";
-import {IApartment, TFilter} from "@/types/apartment.ts";
+import { IApartment, TFilter } from "@/types/apartment.ts";
 
 const defaultParams = {
   limit: 10,

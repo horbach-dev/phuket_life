@@ -1,5 +1,5 @@
 import { TApartmentsFilterParams } from './types'
-import {TFilter} from "@/types/apartment.ts";
+import { TFilter } from "@/types/apartment.ts";
 
 const defaultResult = {
   status: { _eq: 'published' },

@@ -14,14 +14,14 @@ const IndexPage: FC = () => {
   return (
     <Page back={false}>
       <div className="container">
-        <FirstSection />
-        <HotOffers />
+        <FirstSection navigate={navigate} />
       </div>
-        <CategoriesSection
-          onChangeCategory={category => {
-            navigate('/apartments', {state: {category}})
-          }}
-          button={(
+      <ArticleSection />
+      <CategoriesSection
+        onChangeCategory={category => {
+          navigate('/apartments', {state: {category}})
+        }}
+        button={(
           <Button
             mode='bezeled'
             size='s'
@@ -34,7 +34,9 @@ const IndexPage: FC = () => {
             В каталог
           </Button>
         )} />
-      <ArticleSection />
+      <div className="container">
+        <HotOffers navigate={navigate} />
+      </div>
     </Page>
   );
 };
